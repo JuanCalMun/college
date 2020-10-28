@@ -1,7 +1,7 @@
 package com.persistence.college.configuration;
 
 import com.persistence.college.app.address.model.Address;
-import com.persistence.college.app.address.model.repository.AddressRepository;
+import com.persistence.college.app.address.repository.AddressRepository;
 import com.persistence.college.app.person.model.Person;
 import com.persistence.college.app.person.repository.PersonRepository;
 import org.springframework.boot.ApplicationRunner;

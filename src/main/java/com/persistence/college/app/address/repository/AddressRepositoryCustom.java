@@ -1,4 +1,4 @@
-package com.persistence.college.app.address.model.repository;
+package com.persistence.college.app.address.repository;
 
 import com.persistence.college.app.address.model.Address;
 
