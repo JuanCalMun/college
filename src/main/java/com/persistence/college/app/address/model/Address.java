@@ -1,4 +1,4 @@
-package com.persistence.college.address.model;
+package com.persistence.college.app.address.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

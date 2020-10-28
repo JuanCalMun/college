@@ -1,6 +1,6 @@
-package com.persistence.college.person.model;
+package com.persistence.college.app.person.model;
 
-import com.persistence.college.address.model.Address;
+import com.persistence.college.app.address.model.Address;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
