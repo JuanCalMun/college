@@ -1,5 +1,6 @@
 package com.persistence.college.person.model;
 
+import com.persistence.college.address.model.Address;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,4 +31,8 @@ public class Person implements Serializable {
 
     @Column(name = "PER_SURNAME")
     private String surname;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PER_ADR_ID")
+    private Address address;
 }
