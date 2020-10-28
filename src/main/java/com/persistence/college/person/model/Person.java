@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Entity(name = "person")
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
