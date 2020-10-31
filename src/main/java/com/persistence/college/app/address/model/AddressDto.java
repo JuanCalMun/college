@@ -1,11 +1,14 @@
 package com.persistence.college.app.address.model;
 
-import lombok.Builder;
+import com.persistence.college.app.shared.model.DtoBase;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-@Builder
-public class AddressDto {
+@EqualsAndHashCode(callSuper = false)
+public class AddressDto extends DtoBase {
+    private static final long serialVersionUID = -6171206516990183142L;
+
     private long id;
     private String country;
     private String street;

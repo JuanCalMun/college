@@ -1,5 +1,6 @@
 package com.persistence.college.app.address.model;
 
+import com.persistence.college.app.shared.model.EntityBase;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Table(name = "ADDRESS")
-public class Address implements Serializable {
+public class Address extends EntityBase implements Serializable {
 
     private static final long serialVersionUID = 469871668042811114L;
 
