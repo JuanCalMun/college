@@ -1,6 +1,7 @@
 package com.persistence.college.app.person.model;
 
 import com.persistence.college.app.address.model.Address;
+import com.persistence.college.app.shared.model.EntityBase;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Table(name = "PERSON")
-public class Person implements Serializable {
+public class Person extends EntityBase implements Serializable {
 
     private static final long serialVersionUID = -6580545807873594151L;
 
