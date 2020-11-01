@@ -11,10 +11,10 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
+@Table(name = "PERSON")
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "PERSON")
 public class Person extends EntityBase implements Serializable {
 
     private static final long serialVersionUID = -6580545807873594151L;

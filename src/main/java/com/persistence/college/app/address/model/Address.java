@@ -9,10 +9,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "ADDRESS")
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "ADDRESS")
 public class Address extends EntityBase implements Serializable {
 
     private static final long serialVersionUID = 469871668042811114L;
