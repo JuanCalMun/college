@@ -21,19 +21,37 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
         this.entityManager = entityManager;
     }
 
+    public List<Person> findAll() {
+        JPAQuery<Person> query = new JPAQuery(entityManager);
+        QPerson qPerson = QPerson.person;
+
+        List<Person> fetch = query
+                .from(qPerson)
+                .innerJoin(qPerson.address).fetchJoin()
+                .fetch();
+        return fetch;
+    }
+
     @Override
     public List<Person> findByCriteria(Person criteria) {
 
         JPAQuery<Person> query = new JPAQuery(entityManager);
         QPerson qPerson = QPerson.person;
+        BooleanBuilder predicate = generateCriteriaPredicate(criteria, qPerson);
 
+        List<Person> fetch = query
+                .from(qPerson)
+                .innerJoin(qPerson.address).fetchJoin()
+                .where(predicate).fetch();
+        return fetch;
+    }
 
+    private BooleanBuilder generateCriteriaPredicate(Person criteria, QPerson qPerson) {
         BooleanBuilder predicate = new BooleanBuilder();
-
-//        TODO check ifs are not redundant, pbbly could be in the where clause
         String criteriaName = criteria.getName();
         String criteriaSurname = criteria.getSurname();
         Address criteriaAddress = criteria.getAddress();
+
         if (!StringUtils.isEmpty(criteriaName)) {
             predicate.and(qPerson.name.eq(criteriaName));
         }
@@ -44,10 +62,6 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
             predicate.and(qPerson.address.eq(criteriaAddress));
         }
 
-        List<Person> fetch = query
-                .from(qPerson)
-                .innerJoin(qPerson.address).fetchJoin()
-                .where(predicate).fetch();
-        return fetch;
+        return predicate;
     }
 }

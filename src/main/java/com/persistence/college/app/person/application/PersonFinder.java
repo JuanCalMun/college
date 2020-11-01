@@ -20,7 +20,7 @@ public class PersonFinder {
     }
 
     public List<PersonDto> findAll() {
-        return personMapper.mapEntityToDto(personRepository.findByCriteria(new Person()));
+        return personMapper.mapEntityToDto(personRepository.findAll());
     }
 
     public List<PersonDto> findByCriteria(PersonDto criteria) {
