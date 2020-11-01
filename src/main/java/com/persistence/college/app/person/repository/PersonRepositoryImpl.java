@@ -5,6 +5,8 @@ import com.persistence.college.app.person.model.Person;
 import com.persistence.college.app.person.model.QPerson;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -33,17 +35,21 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
     }
 
     @Override
-    public List<Person> findByCriteria(Person criteria) {
+    public PageImpl<Person> findByCriteria(Person criteria, Pageable pageable) {
 
         JPAQuery<Person> query = new JPAQuery(entityManager);
         QPerson qPerson = QPerson.person;
         BooleanBuilder predicate = generateCriteriaPredicate(criteria, qPerson);
 
-        List<Person> fetch = query
+        JPAQuery<Person> allResults = query
                 .from(qPerson)
                 .innerJoin(qPerson.address).fetchJoin()
-                .where(predicate).fetch();
-        return fetch;
+                .where(predicate).fetchAll();
+
+        List<Person> finalResults = allResults
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize()).fetch();
+        return new PageImpl<>(finalResults, pageable, allResults.fetchCount());
     }
 
     private BooleanBuilder generateCriteriaPredicate(Person criteria, QPerson qPerson) {

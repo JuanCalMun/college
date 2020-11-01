@@ -1,15 +1,15 @@
 package com.persistence.college.app.person.controller;
 
 import com.persistence.college.app.person.application.PersonFinder;
+import com.persistence.college.app.person.model.PageablePersonDto;
 import com.persistence.college.app.person.model.PersonDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1/person")
 public class PersonRestController {
 
     private final PersonFinder personFinder;
@@ -24,7 +24,7 @@ public class PersonRestController {
     }
 
     @PostMapping
-    public List<PersonDto> getPersonsByCriteria(@PathVariable PersonDto personDto) {
-        return personFinder.findAll();
+    public PageImpl<PersonDto> getPersonsByCriteria(@RequestBody PageablePersonDto personDto) {
+        return personFinder.findByCriteria(personDto);
     }
 }

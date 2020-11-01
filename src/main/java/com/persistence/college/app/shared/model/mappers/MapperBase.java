@@ -8,6 +8,7 @@ import org.mapstruct.BeforeMapping;
 import org.mapstruct.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +35,12 @@ public interface MapperBase<E extends EntityBase, D extends DtoBase> {
     }
 
     default List<D> mapEntityToDto(List<E> entities) {
+        return entities.stream()
+                .map(this::mapEntityToDto)
+                .collect(Collectors.toList());
+    }
+
+    default List<D> mapEntityToDto(PageImpl<E> entities) {
         return entities.stream()
                 .map(this::mapEntityToDto)
                 .collect(Collectors.toList());

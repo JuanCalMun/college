@@ -1,11 +1,12 @@
 package com.persistence.college.app.person.repository;
 
 import com.persistence.college.app.person.model.Person;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface PersonRepositoryCustom {
 
-    List<Person> findByCriteria(Person criteria);
+    PageImpl<Person> findByCriteria(Person criteria, Pageable pageable);
 
 }
